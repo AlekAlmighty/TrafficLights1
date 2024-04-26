@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            margin-top: 20vh;
+        }
+      #traffic-light {
+  width: 100px;
+  height: 300px;
+  background-color: black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.light {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}
+
+.gray {
+  background-color: gray;
+}
+
+.active {
+  border: 5px solid #fff;
+}
+    </style>
+</head>
+<body style="background-color: aqua;">
+    <div class="container">
+        <div id="traffic-light">
+            <div class="light red"></div>
+            <div class="light yellow"></div>
+        <div class="light green"></div>
+        </div>
+    </div>
+    <script>
+       function startTrafficLight() {
+  var redLight = document.querySelector('.light.red');
+  var yellowLight = document.querySelector('.light.yellow');
+  var greenLight = document.querySelector('.light.green');
+
+  function activateRed() {
+    redLight.classList.add('active');
+    yellowLight.classList.add('gray');
+    greenLight.classList.add('gray');
+    setTimeout(function() {
+      redLight.classList.remove('active');
+      yellowLight.classList.remove('gray');
+      greenLight.classList.remove('gray');
+      activateGreen();
+    }, 9000); 
+  }
+
+  function activateGreen() {
+    redLight.classList.add('gray');
+    yellowLight.classList.add('gray');
+    greenLight.classList.add('active');
+    setTimeout(function() {
+      redLight.classList.remove('gray');
+      yellowLight.classList.remove('gray');
+      greenLight.classList.remove('active');
+      activateYellow();
+    }, 6000);
+  }
+
+  function activateYellow() {
+    redLight.classList.add('gray');
+    yellowLight.classList.add('active');
+    greenLight.classList.add('gray');
+    setTimeout(function() {
+      redLight.classList.remove('gray');
+      yellowLight.classList.remove('active');
+      greenLight.classList.remove('gray');
+      activateRed();
+    }, 9000);
+  }
+
+  activateRed();
+}
+
+startTrafficLight();
+    </script>
+</body>
+</html>
